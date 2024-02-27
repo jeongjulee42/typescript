@@ -1,51 +1,11 @@
-// stack,  string, push, pop
-type StringNode = {
-    data:string;
-    next:StringNode | null;
-};
-
-class StringStack {
-    private first: StringNode | null;
-    constructor(){
-        this.first = null;
-    }
-    push(str: string) {
-        let newNode: StringNode = {
-            data: str,
-            next: this.first
+{
+    function checkNotNull<T>(arg: T | null): T {
+        if (arg == null) {
+            throw new Error('not valid number!');
         }
-        this.first = newNode
-    }
-    pop(): string{
-        if(this.first === null){
-            throw new Error('there is no data in stack')
+        return arg;
         }
-        let newNode = this.first;
-        this.first = newNode.next;
-        return newNode.data
-    }
-    show(){
-        let next = this.first
-        while(next !== null){
-            console.log(next.data)
-            next = next.next
-        }
-        console.log("---end---")
+        const number = checkNotNull(123);
+        const boal: boolean = checkNotNull(true);
     }
 }
-
-let stk = new StringStack();
-stk.show()
-stk.push("asd");
-stk.push("!23");
-stk.push("gvsdv");
-stk.push("dbs");
-stk.push("nbdfg");
-stk.show();
-
-console.log("---pop---");
-console.log(stk.pop())
-console.log(stk.pop())
-console.log("---end---");
-stk.pop();
-stk.show();
