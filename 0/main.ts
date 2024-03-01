@@ -1,20 +1,31 @@
-// either: a or b
-interface Either<L, R> {
-    left: () => L;
-    right: () => R;
-}
-
-class SimpleEither<L, R> implements Either<L, R> {
-    constructor(private leftValue: L, private rightValue: R) {}
-    left(): L {
-        return this.leftValue;
-    }
-
-    right(): R {
-        return this.rightValue;
-    }
-}
-const either: Either<number, number> = new SimpleEither(4, 5);
-either.left(); // 4
-either.right(); //5
-const best = new SimpleEither({name: 'ellie'}, 'hello');
+{
+    const obj = {
+      name: 'ellie',
+    };
+    obj.name; // ellie
+    obj['name']; // ellie
+  
+    type Animal = {
+      name: string;
+      age: number;
+      gender: 'male' | 'female';
+    };
+  
+    type Name = Animal['name']; // string
+    const text: Name = 'hello';
+  
+    type Gender = Animal['gender']; //'male' | 'female'
+  
+    type Keys = keyof Animal; // 'name' | 'age' | 'gender'
+    const key: Keys = 'gender';
+  
+    type Person = {
+      name: string;
+      gender: Animal['gender'];
+    };
+    const person: Person = {
+      name: 'ellie',
+      gender: 'male',
+    };
+  }
+  
